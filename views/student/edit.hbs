@@ -1,0 +1,34 @@
+<form action="/student/edit/{{student._id}}" method="post" class="container col-md-8 card">
+<h1 class="text-danger text-center">ADD New STUDENT</h1>
+    <div class="form-group mt-3">
+        <label for="name" class="text-primary"> Name</label>
+        <input class="form-control" type="text" name="name" id="" required minlength="3" maxlength="30" value="{{student.name}}">
+    </div>
+    <div class="form-group mt-3">
+        <label for="dob" class="text-primary"> Date of Birth</label>
+        <input class="form-control" type="date" value="{{ dateFormat student.dob "YYYY-MM-DD"}}" name="dob" id="" required>
+    </div>
+    <div class="form-group mt-3">
+        <label for="gpa" class="text-primary">GPA</label>
+        <input class="form-control" type="number" value="{{student.gpa}}" name="gpa" id="" required min="0" max="10">
+    </div>
+    <div class="form-group mt-3">
+        <label for="gender" class="text-primary">Gender</label>
+        {{#equal student.gender "Female"}}
+            <input type="radio" name="gender" value="Male" id="" >Male
+        <input type="radio" name="gender" value="Female" id=""  checked="true">Female
+        {{/equal}}
+        {{#equal student.gender "Male"}}
+            <input type="radio" name="gender" value="Male" id="" checked="true">Male
+        <input type="radio" name="gender" value="Female" id="" >Female
+        {{/equal}}
+    </div>
+    <div class="form-group mt-3">
+        <label for="image" class="text-primary">Image</label>
+        <img src="{{student.image}}" width="100" height="100">
+        <input class="form-control" type="url" value="{{student.image}}"  name="image" id="" required>
+    </div>
+    <div class="form-group mt-3 mb-4 text-center">
+        <input class="btn btn-primary" type="submit" value="Edit">
+    </div>
+</form>
