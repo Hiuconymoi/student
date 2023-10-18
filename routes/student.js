@@ -8,6 +8,11 @@ router.get('/',async(req,res)=>{
     res.render('student/index',{students:students})
 })
 
+router.get('/list',async(req,res)=>{
+    var students = await StudentModel.find();
+    res.render('student/list',{students:students})
+})
+
 router.get('/detail/:id',async(req,res)=>{
     var id=req.params.id;
     var student=await StudentModel.findById(id);
@@ -42,4 +47,20 @@ router.post('/edit/:id',async(req,res)=>{
     res.redirect('/student');
 });
 
+//Search
+router.post('/search', async (req, res) => {
+    var keyword = req.body.name;
+    //relative search
+    var students = await StudentModel.find({ name: new RegExp(keyword, "i") });
+    res.render('student/index', { students: students });
+ })
+//Sort
+router.get('/nameasc',async(req,res)=>{
+    var student=await StudentModel.find().sort({name:1});
+    res.render('student/index',{students:student})
+})
+router.get('/namedsc',async(req,res)=>{
+    var student=await StudentModel.find().sort({name:-1});
+    res.render('student/index',{students:student})
+})
 module.exports = router;

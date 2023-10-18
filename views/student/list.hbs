@@ -1,0 +1,18 @@
+<div class="row">
+    {{#each students }}
+    <div class="col-md-3 col-sm-6">
+        <div class="product-grid">
+            <div class="product-image">
+                 <a href="/student/detail/{{_id}}"> 
+                    <img class="pic-1" src="{{image}}">
+                    <img class="pic-2" src="{{image}}">
+                </a>
+            </div>
+            <div class="product-content">
+                <h3 class="title"><a href="#">{{name }}</a></h3>
+                <div class="price">{{ gpa }}</div>
+            </div>
+        </div>
+    </div>
+   {{/each}}
+</div>

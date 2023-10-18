@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var studentRouter=require('./routes/student')
+var figureRouter = require('./routes/figure');
+var planeRouter=require('./routes/plane');
 
 
 
@@ -34,14 +36,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/student',studentRouter);
+app.use('/figure', figureRouter);
+app.use('/plane', planeRouter);
 
 //Khai bao body-parser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended : false}))
 
+
 //Khai bao va cau hinh thu vien mongoose
 var mongoose = require("mongoose");
 var uri = "mongodb+srv://hiuconymoi:vanhieu2k3@cluster0.4gstzz5.mongodb.net/gch1105";
+mongoose.set('strictQuery',false)
 mongoose.connect(uri)
 .then(()=>console.log("Connect to db OK"))
 .catch((err) => console.log (err));
